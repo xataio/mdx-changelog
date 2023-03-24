@@ -1,0 +1,44 @@
+---
+date: 03-24-2023
+---
+
+### API
+
+- Sometimes all you need is a bit of randomness. A new sort option allows you to “sort by random”. This can be useful, for example, to show a random sample of results from the table. To use, see the [examples in the docs.](https://xata.io/docs/typescript-client/get#sorting-the-results) The options looks like this in the API:
+
+```sql
+{
+  "sort": ["*:random"]
+}
+```
+
+And like this in the TypeScript SDK (pending release):
+
+```sql
+const users = await xata.db.Users
+  .sort("*", "random")
+  .getMany();
+```
+
+- Fix: in some cases the context passed to ChatGPT was smaller than our target number of tokens, resulting in low quality answers. This is now fixed.
+- Fix: drastically reduce the chance of `too_many_nested_clauses` ****exception on the search and ask endpoints. Also improved the error message to guide towards a correct solution.
+
+### UI
+
+- Added the ability to filter on vector columns being NULL.
+- Added the ability to paste an datetime into a datetime cell in the grid. e.g. `26/05/18` or `tomorrow at 4pm`
+- Fixes for the behavior of the Chat bot when them Ask button is pressed multiple times or the tabs are changed.
+- Fixed the display of empty strings as a default value in the Schema view.
+
+### CLI
+
+- Added support for the vector column to the `xata schema edit` command.
+
+**********************Blog posts**********************
+
+- [Semantic Search With Xata, OpenAI, TypeScript, and Deno](https://xata.io/blog/semantic-search-openai-typescript-deno) - A light introduction to using the OpenAI API from TypeScript for a real use case.
+- [Xata and Auth.js on 2 Next.js Apps: App Directory and Pages Directory](https://xata.io/blog/xata-authjs-nextjs) - A tutorial showing you how to use the Xata Auth.js adapter to easily implement authentication in Next.js
+
+### Docs
+
+- Small changes to Getting Started docs to better reference Python options.

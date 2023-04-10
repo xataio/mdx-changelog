@@ -1,0 +1,49 @@
+---
+date: 03-10-2023
+---
+
+#### API
+
+- Do more with less round-trips. Our Transaction API endpoint can now not only `insert`, `update` and `delete,` but also `get` data by ID. An example looks like this:
+
+```tsx
+{
+  "operations": [
+    {"insert": {"table": "items", "record": {"id": "new-0", "name": "feed the fish"}, "createOnly": true}},
+    {"update": {"table": "items", "id": "new-0", "fields": {"name": "feed the goldfish"}, "ifVersion": 0}},
+    {"get": {"table": "items", "id": "new-0", "columns": ["id","name"]}},
+    {"delete": {"table": "items", "id": "new-0"}}
+  ]
+}
+```
+
+#### UI
+
+- The “Get Code snippet” dialog is now a lot more helpful to Windows users as we’ve added support for `PowerShell` and `cmd` 🎉
+
+<ArticleImage
+  src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/029d3347-948b-4c14-942b-c0ed24e16244/228569361-604f2008-87c9-4c76-8d59-3fbe658bf3f9.gif"
+  width="2202"
+  height="1199"
+  alt="Get snippet window"
+  caption="Snippets in Windows are much better"
+  position="center"
+/>
+
+- Continuing our theme of quality of life improvements:
+  - Allow copy pasting of null cell values, because “nulls” are important to developers.
+  - Improvements in the filtering inputs.
+  - Fixed a bug where editing emails and numbers was sometimes moving the cursor at the end
+
+#### Blogs
+
+- [Xata and Auth.Js on 2 Next.Js Apps: App Directory and Pages Directory](https://xata.io/blog/xata-authjs-nextjs) by Atila Fassina
+- [The Importance of Data Modeling in TypeScript](https://xata.io/blog/the-importance-of-data-modeling-in-typescript) by Fabien Bernard
+
+#### Podcast
+
+- New Data in the Wild episode: [Interview with Anna Maste formerly of Boondockers](https://www.youtube.com/watch?v=7BHmr1KMRJg&ab_channel=Xata)
+
+#### Demos
+
+- This [twitter thread](https://twitter.com/xata/status/1641789813316632576?s=20) includes some new things we’re working on.

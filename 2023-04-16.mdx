@@ -1,0 +1,32 @@
+---
+date: 04-16-2023
+---
+
+#### API
+
+- Improved error message on for null columns without a default value. This is a common source of confusion and, yes, we’re working on fixing better by allowing not null columns without defaults.
+
+#### UI
+
+- Better confirmation messages when deleting columns or tables. The names of the affected column and table are now included in the confirmation, for example:
+    
+<ArticleImage
+  src="https://raw.githubusercontent.com/xataio/mdx-changelog/main/images/table-delete.png"
+  width="826"
+  height="522"
+  alt="Table delete confirmation"
+  caption="Table delete confirmation"
+  position="center"
+/>
+- When canceling an editing operation, we now only show a confirmation dialog if there were any changes.
+- The column ordering is now used consistently every where we use it: in the edit drawer, in filters/sorting dialogs, in the schema page, etc.
+- Fixed the generated code in the Get Code Snippet that was sometimes producing dates with an invalid format.
+- Also fixed an issue where the `'` character in filters was producing an error in the Get Code Snippet.
+- Fixed an issue with editing the ID when adding a new record.
+- Fixed scrolling behaviour when renaming or deleting Link columns in the Schema view.
+- Sidebar links are now proper `<a>` elements so you can right-click and open in a new tab.
+
+#### Blog posts
+
+- Community spotlight: [The story behind xata-go, a Go SDK for Xata](https://xata.io/blog/community-spotlight-xata-go-sdk)
+- [Search three ways with Xata](https://xata.io/blog/xata-partial-fuzzy-semantic-search). This pairs up with the [5 minutes video](https://youtu.be/Y554vsvDO7s) that visually demonstrates the differences between partial match, fuzzy free-text-search, and semantic/similary search.

@@ -1,0 +1,28 @@
+---
+date: 05-22-2023
+---
+
+- Added `createdAt` and `updatedAt` meta-columns. From now on, you always know when
+  something was created and last updated. You get them with the record metadata,
+  as simple as that. This was a common feature request that makes developers
+  life easier, which is our favorite type of feature to
+  implement: [https://feedback.xata.io/feature-requests/p/implement-createdat-updatedat-fields](https://feedback.xata.io/feature-requests/p/implement-createdat-updatedat-fields).
+  It is now also possible to filter by these meta-columns.
+- Database renames! It sounds simple, but while it was possible to rename almost
+  anything in Xata, database names were forever. Now you can finally fix that typo
+  from the first day of your project. Be aware that this impacts the URLs under 
+  which the database is available, so it will be a breaking change to your application.
+- Transactions: add `failMissing` option for deletes. If you set this flag to true, 
+  and the delete operations affects zero records, the transaction will be failed.
+- Fix occasional 500 error in the Ask endpoint that happened on particular inputs
+- When returning errors about multiple columns, have the columns sorted by name.
+- Added a `factor` option to the free-text-search date booster. The `factor`
+  multiplies the boost, allowing you to better control the effect of the date booster.
+- Better error message on `unique` + `notNull` columns.
+- In the UI, moved database menu functionality to database settings page.
+- Bigger scroll target when dragging-and-dropping a column. Makes it easier to move
+  columns around in the table view, especially when having lots of columns.
+- For the Vercel integration, redirect to the main page if the user is signed-in
+  already. Fixed a couple more issues around the Vercel integration.
+- Handle filter, sort and hidden columns when a column is deleted. This fixes some
+  corner error conditions after a column was deleted.

@@ -1,0 +1,38 @@
+---
+date: 06-06-2023
+---
+
+- Tons of quality-of-life improvements to the `xata init` CLI command, improving the 
+flow of setup questions, default values, clarifying the wording, and fixes. Make sure 
+you upgrade soon `npm install -g @xata.io/cli@latest`.
+
+<ArticleImage
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/xata-init-run.png"
+  width="568"
+  height="382"
+  alt="Xata CLI init"
+  caption="xata init"
+  position="center"
+/>
+
+- Also added better support for `pnpm` and `yarn`
+- Added a new `xata dbs rename` command to the CLI.
+- Modified the `xata dbs delete` CLI command to allow for the interactive selection.
+- The `createdAt` and `updatedAt` columns are now available for filtering in the search
+endpoints as well.
+- Several improvements to the internal retrying logic which resulted in temporary errors
+during scaling events.
+- Fix for adding object columns via update branch schema API.
+- Fix replication issue of large vector columns when another column is updated.
+- Fix unit selector on the search date boosters.
+- Fixed the link of the new gear icon in settings.
+
+New Blog posts:
+
+- [How we implemented database renaming](https://xata.io/blog/database-rename)
+- [Club Xata Reunion](https://xata.io/blog/company-offsite-milan-2023)
+
+New Videos:
+
+- [This Is the Database Workflow I'VE BEEN WAITING FOR!](https://www.youtube.com/watch?v=VrpyWLB3V1c&t=364s&ab_channel=JamesQQuick) by James Quick
+- [Absolute speed: SolidJS + Web-Workers](https://www.youtube.com/watch?v=Ll2zt2m5Z5A&ab_channel=Atila)

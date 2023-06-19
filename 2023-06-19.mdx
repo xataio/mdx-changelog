@@ -1,0 +1,32 @@
+---
+date: 06-19-2023
+---
+
+- **Important**: we are planning to deprecate the `object` type. We have published a plan for it and we have updated the [docs](https://xata.io/docs/concepts/data-model#object) with the available alternatives. A warning will show up in the UI as well if you try to add a column with dots. It is best to avoid this type from now on.
+- Improved the bulk inserts API to returned all the failed records, not only the first one. This enables significantly more efficient data loading operations in the presence of errors.
+- Metadata columns `createdAt`, `updatedAt`, and `version` are now exposed in the UI, and usable in filters and sort conditions across the app. mew tables get these columns by default:
+
+<ArticleImage
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/newtable-meta-columns.png"
+  width="1024"
+  height="725"
+  alt="Xata new table showing the default meta columns"
+  caption="New table showing the meta columns"
+  position="center"
+/>
+
+- Added `createdAt` and `updatedAt` fields to the search API responses metadata.
+- Removed plural versions of the CLI commands (e.g. “workspaces”, “branches”). The singular version of them has been recommended for a while now, and it’s time to remove the deprecated commands.
+- Made access to the read replicas publicly available for the /query and /summarize endpoints. Change the consistency level to eventual  to leverage this functionality.
+- It is now possible to explicitly address the ID column of a linked record in filters. This was already possible by using the table name, this adds the option of addressing as `table.id`.
+- Fixed deleting records that have `:` in their ID columns.
+- Fixed UI issue where the Filter menu item was not hidden when clicking outside of it.
+- Fixed the reloading of the `updatedAt` and `version` columns where other columns where edited.
+- Fixed boolean and datetime column widths in the UI.
+- Removed the “reset filters” message on empty table when only sort conditions are set, because removing the sort condition won’t reveal more rows.
+- Fix: it is no longer possible to delete databases that have billing units attached. You need to first downgrade them, and then delete them.
+- Improved error message for using `$includes` in the search APIs (it is not supported).
+- Improve the `xata push` error message if the target branch is ahead of the migration list.
+- Fixed failed migrations leaving the database branch in a state where new migrations were blocked until manual intervention.
+- Accessibility improvement: Fixed area-label on button menu in database header
+- Fixed “Learn more” link in the code snippet for the CLI.

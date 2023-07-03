@@ -1,0 +1,33 @@
+---
+date: 07-03-2023
+---
+
+- As announced [here](https://xata.io/blog/new-regions_sydney-frankfurt), we have added two new regions: Sydney 🇦🇺 and Frankfurt 🇩🇪. G'day mate, and respectively, Guten Tag.
+- In addition, the UI and the relevant APIs now return the friendly region name (e.g. Frankfurt) beside the AWS region name (eu-central-1).
+- The Xata GitHub integration now triggers the branch creation as soon as a commit is pushed to a new branch, while before it was waiting for the Pull Request to be open. What this means, in practice, is that the Xata branch is created before the Vercel build in almost all cases, which means you are no longer getting a red Vercel build on the first try. 🟢
+- When adding a column, a nice flashing effect shows where your new column has landed:
+
+<ArticleVideo 
+    platform="html" 
+    src="https://github.com/xataio/mdx-changelog/raw/main/images/add_column_flash.mp4" 
+    width="1024"
+    height="976"
+/>
+
+- For another quality of life improvement, when you need to select a table to create a link relation, you can now type to quickly find the table you need. No more scrolling thrown tens of tables.
+
+<ArticleVideo 
+    platform="html" 
+    src="https://github.com/xataio/mdx-changelog/raw/main/images/link_column_select.mp4" 
+    width="1024"
+    height="976"
+/>
+
+- As part of our object type deprecation plan, which we announced in the last Changelog edition, we are now showing warnings in the UI when a new object type is being created.
+- Fixed US issue with the multiple column type editing.
+- Fixed out of range error messages (e.g. int value that is larger than max int).
+
+New Blog posts:
+
+- [Postgres schema changes are still a PITA](https://xata.io/blog/postgres-schema-changes-pita)
+- [Server Actions, databases, and the future of data handling](https://xata.io/blog/server-actions-data-handling)

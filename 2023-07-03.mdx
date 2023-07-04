@@ -11,18 +11,28 @@ date: 07-03-2023
     platform="html" 
     src="https://github.com/xataio/mdx-changelog/raw/main/images/add_column_flash.mp4" 
     width="1024"
-    height="976"
+    height="574"
 />
 
-- For another quality of life improvement, when you need to select a table to create a link relation, you can now type to quickly find the table you need. No more scrolling thrown tens of tables.
+- For another quality of life improvement, added type-ahead search for selecting columns for filtering and sorting. 
 
 <ArticleVideo 
     platform="html" 
     src="https://github.com/xataio/mdx-changelog/raw/main/images/link_column_select.mp4" 
     width="1024"
-    height="976"
+    height="392"
 />
 
+- Similarly, when you need to select a table to create a link relation, you can now type to quickly find the table you need. No more scrolling thrown tens of tables.
+
+<ArticleVideo 
+    platform="html" 
+    src="https://github.com/xataio/mdx-changelog/raw/main/images/link_column_select.mp4" 
+    width="1024"
+    height="574"
+/>
+
+- The [TypeScript SDK](https://github.com/xataio/client-ts) and [Python SDK](https://github.com/xataio/xata-py) emit server messages to the logs. For example if you are invoking the get columns of a table API, a message about the object deprecation will be added to the client logs. This creates a communication channel to provide meta information to the client side.
 - As part of our object type deprecation plan, which we announced in the last Changelog edition, we are now showing warnings in the UI when a new object type is being created.
 - Fixed UI issue with the multiple column type editing.
 - Fixed out of range error messages (e.g. int value that is larger than max int).

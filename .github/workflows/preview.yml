@@ -1,0 +1,131 @@
+name: Changelog preview
+
+# https://stackoverflow.com/a/72408109
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Website branch to build from'
+        default: 'main'
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VERCEL_ORG_ID: team_lMj2cFnO13wwm6LWz3X5kulx
+      VERCEL_PROJECT_ID: prj_7fENPf4qHhMCnz6j2IGYWDUkJ9wU
+
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v3
+        with:
+          repository: xataio/website
+          ref: ${{ inputs.branch || 'main' }}
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm i -g vercel@latest
+
+      - id: deploy
+        name: Deploy to Vercel
+        run: |
+          vercel deploy --no-wait \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --build-env MDX_CHANGELOG_BRANCH='${{ github.head_ref || github.ref_name }}' \
+            --env MDX_CHANGELOG_BRANCH='${{ github.head_ref || github.ref_name }}' \
+            --build-env XATA_PREVIEW=none \
+            --env XATA_PREVIEW=none \
+            --build-env XATA_BRANCH=main \
+            --env XATA_BRANCH=main \
+            > deploy_url.txt
+
+      - name: Get deployment URL
+        id: get-url
+        run: |
+          echo "Deploy URL: $(cat deploy_url.txt)"
+          echo "URL=$(cat deploy_url.txt)" >> $GITHUB_OUTPUT
+          echo "HOSTNAME=$(cat deploy_url.txt | cut -d/ -f3)" >> $GITHUB_OUTPUT
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        if: github.event_name == 'pull_request'
+        id: find-comment
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'xata-bot'
+          # We use hidden base64 encoded state to detect the action's comments
+          body-includes: '[x]:eyAiYXBwIjogIndlYnNpdGUtcHJldmlldyIgfQ=='
+
+      - name: Update comment with build status
+        uses: peter-evans/create-or-update-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body: |
+            [x]:eyAiYXBwIjogIndlYnNpdGUtcHJldmlldyIgfQ==
+            Pull request has been updated, building a new [preview](https://vercel.com/deployments/${{ steps.get-url.outputs.HOSTNAME }}?redirect=1)...
+
+      - name: Wait for deployment
+        run: |
+          vercel inspect \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --scope $VERCEL_ORG_ID \
+            --wait \
+            --timeout=10m \
+            ${{ steps.get-url.outputs.URL }}
+
+      - name: Create or update alias
+        run: |
+          vercel alias \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --scope $VERCEL_ORG_ID \
+            --yes \
+            ${{ steps.get-url.outputs.URL }} \
+            xata-cl-pr-${{ github.event.pull_request.number }}.vercel.app
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        if: github.event_name == 'pull_request'
+        id: find-comment-2
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'xata-bot'
+          body-includes: '[x]:eyAiYXBwIjogIndlYnNpdGUtcHJldmlldyIgfQ=='
+
+      - name: Create or update comment with preview URL
+        uses: peter-evans/create-or-update-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          comment-id: ${{ steps.find-comment-2.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body: |
+            [x]:eyAiYXBwIjogIndlYnNpdGUtcHJldmlldyIgfQ==
+            Check out the preview at https://xata-cl-pr-${{ github.event.pull_request.number }}.vercel.app
+
+      - name: If job cancelled, remove deployment
+        if: ${{ cancelled() }}
+        run: |
+          vercel remove \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --scope $VERCEL_ORG_ID \
+            --safe \
+            --yes \
+            $(cat deploy_url.txt)

@@ -1,0 +1,28 @@
+---
+date: 12-11-2023
+---
+
+## What’s new?
+
+Discover the latest enhancements and feature updates at Xata:
+
+- **Release of Go SDK**: We've released our official [Go SDK](https://github.com/xataio/xata-go), adding to our existing [Python](https://github.com/xataio/xata-py) and [TypeScript](https://github.com/xataio/client-ts) offerings. This new Go SDK provides improved performance and better concurrency support, ideal for Go developers. For more information, refer to our [docs](https://xata.io/docs/sdk/go/overview). 
+- **Improved UI in schema editor**: Implemented title truncation in the schema editor to prevent table overflow, enhancing the overall user interface and readability.
+- **Workspace deletion update**: You can now delete workspaces even if they have active subscriptions, providing enhanced control over workspace management. Additionally, the confirmation modal has been updated to inform you about any active subscriptions associated with a workspace before its deletion.
+
+### Latest developments in pgroll
+
+Take a look at the recent progress in our [pgroll](https://github.com/xataio/pgroll) project:
+
+- **[*FIX*]** **Improved table name handling**: Resolved a bug where incorrect table name quoting in the `OpSetReplicaIdentity` operation led to issues with tables having case-sensitive names. [PR #206](https://github.com/xataio/pgroll/pull/206)
+- **[*FIX*]** **Enhanced release process**: This community contribution, pushes the Docker image to `ghcr.io` with packaged results accessible at https://github.com/users/xiaoyao9184/packages/container/package/pgroll. [PR #209](https://github.com/xataio/pgroll/pull/209)
+- **[*NEW*]** **Automated Go type generation**: Added a Makefile target to automate Go types generation from JSON schema using `omissis/go-jsonschema`. [PR #210](https://github.com/xataio/pgroll/pull/210/files)
+
+## Blog posts
+
+Explore Xata's recent blog posts to stay informed. Subscribe to the [blog](https://xata.io/blog) to get the latest content delivered to your inbox. Here are some of our recently published posts:
+
+- [Holiday Hackathon](https://xata.io/blog/xata-holiday-hackathon)
+- [Announcing the release of the Xata Go SDK](https://xata.io/blog/announcing-xata-go-sdk)
+- [How pgroll works under the hood](https://xata.io/blog/pgroll-internals)
+- [What is horizontal sharding?](https://xata.io/blog/xatabyte-horizontal-sharding)

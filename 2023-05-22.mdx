@@ -10,9 +10,9 @@ date: 05-22-2023
   It is now also possible to filter by these meta-columns.
 - Database renames! It sounds simple, but while it was possible to rename almost
   anything in Xata, database names were forever. Now you can finally fix that typo
-  from the first day of your project. Be aware that this impacts the URLs under 
+  from the first day of your project. Be aware that this impacts the URLs under
   which the database is available, so it will be a breaking change to your application.
-- Transactions: add `failMissing` option for deletes. If you set this flag to true, 
+- Transactions: add `failMissing` option for deletes. If you set this flag to true,
   and the delete operations affects zero records, the transaction will be failed.
 - Fix occasional 500 error in the Ask endpoint that happened on particular inputs
 - When returning errors about multiple columns, have the columns sorted by name.

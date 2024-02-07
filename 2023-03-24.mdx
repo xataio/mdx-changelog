@@ -21,7 +21,7 @@ const users = await xata.db.Users
 ```
 
 - Fix: in some cases the context passed to ChatGPT was smaller than our target number of tokens, resulting in low quality answers. This is now fixed.
-- Fix: drastically reduce the chance of `too_many_nested_clauses` ****exception on the search and ask endpoints. Also improved the error message to guide towards a correct solution.
+- Fix: drastically reduce the chance of `too_many_nested_clauses` exception on the search and ask endpoints. Also improved the error message to guide towards a correct solution.
 
 #### UI
 
@@ -34,7 +34,7 @@ const users = await xata.db.Users
 
 - Added support for the vector column to the `xata schema edit` command.
 
-**********************Blog posts**********************
+#### Blog posts
 
 - [Semantic Search With Xata, OpenAI, TypeScript, and Deno](https://xata.io/blog/semantic-search-openai-typescript-deno) - A light introduction to using the OpenAI API from TypeScript for a real use case.
 - [Xata and Auth.js on 2 Next.js Apps: App Directory and Pages Directory](https://xata.io/blog/xata-authjs-nextjs) - A tutorial showing you how to use the Xata Auth.js adapter to easily implement authentication in Next.js

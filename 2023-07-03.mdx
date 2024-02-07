@@ -7,29 +7,29 @@ date: 07-03-2023
 - The Xata GitHub integration now triggers the branch creation as soon as a commit is pushed to a new branch, while before it was waiting for the Pull Request to be open. What this means, in practice, is that the Xata branch is created before the Vercel build in almost all cases, which means you are no longer getting a red Vercel build on the first try. 🟢
 - When adding a column, a nice flashing effect shows where your new column has landed:
 
-<ArticleVideo 
-    platform="html" 
-    src="https://github.com/xataio/mdx-changelog/raw/main/images/add_column_flash.mp4" 
-    width="1024"
-    height="574"
+<ArticleVideo
+  platform="html"
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/add_column_flash.mp4"
+  width="1024"
+  height="574"
 />
 
-- For another quality of life improvement, added type-ahead search for selecting columns for filtering and sorting. 
+- For another quality of life improvement, added type-ahead search for selecting columns for filtering and sorting.
 
-<ArticleVideo 
-    platform="html" 
-    src="https://github.com/xataio/mdx-changelog/raw/main/images/column_typeahead.mp4"
-    width="1024"
-    height="392"
+<ArticleVideo
+  platform="html"
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/column_typeahead.mp4"
+  width="1024"
+  height="392"
 />
 
 - Similarly, when you need to select a table to create a link relation, you can now type to quickly find the table you need. No more scrolling thrown tens of tables.
 
-<ArticleVideo 
-    platform="html" 
-    src="https://github.com/xataio/mdx-changelog/raw/main/images/link_column_select.mp4" 
-    width="1024"
-    height="574"
+<ArticleVideo
+  platform="html"
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/link_column_select.mp4"
+  width="1024"
+  height="574"
 />
 
 - The [TypeScript SDK](https://github.com/xataio/client-ts) and [Python SDK](https://github.com/xataio/xata-py) emit server messages to the logs. For example if you are invoking the get columns of a table API, a message about the object deprecation will be added to the client logs. This creates a communication channel to provide meta information to the client side.

@@ -16,8 +16,8 @@ date: 06-19-2023
 />
 
 - Added `createdAt` and `updatedAt` fields to the search API responses metadata.
-- Removed plural versions of the CLI commands (e.g. “workspaces”, “branches”). The singular version of them has been recommended for a while now, and it’s time to remove the deprecated commands.
-- Made access to the read replicas publicly available for the /query and /summarize endpoints. Change the consistency level to eventual  to leverage this functionality.
+- Removed plural versions of the CLI commands (e.g. “workspaces”, “branches”). The singular version of them has been recommended for a while now, and it's time to remove the deprecated commands.
+- Made access to the read replicas publicly available for the /query and /summarize endpoints. Change the consistency level to eventual to leverage this functionality.
 - It is now possible to explicitly address the ID column of a linked record in filters. This was already possible by using the table name, this adds the option of addressing as `table.id`.
 - Fixed deleting records that have `:` in their ID columns.
 - Fixed UI issue where the Filter menu item was not hidden when clicking outside of it.

@@ -1,0 +1,46 @@
+---
+date: 03-10-2023
+---
+
+#### API changes
+
+- Update the /ask endpoint to use the new ChatGPT API and the newly released `gpt-3.5-turbo` model. This has resulted in a pricing decrease and more questions included in the free tier.
+- Fixed error when a lot of nested clauses would cause the /ask endpoint to return 500 errors
+- Corrected the license of the published OpenAPI spec to Apache-2
+
+#### UI changes
+
+- Fixed pasting behaviour when a cell is in edit more. It used to overwrite the whole cell, now it correctly appends to the existing text.
+- Several fixes around column constraints:
+  - Users can set default value without setting `notNull: true`
+  - Users can enter invalid constraint combinations but are presented with a clear error about what they did wrong.
+  - Switching column type resets unique, `notNull` and default value to an allowed value if it's unsupported.
+- Prevent two table cells from being selected in some scenarios. There was a bug when data had changed in the grid and you let your browser tab lose and regain focus.
+- Fixed copy paste null string values in table
+- More minor cell editing bug fixes
+- Small design issues cleanup across the app
+  - right input padding for table inputs
+  - clickable table headers in the schema page
+  - scrollable branch list
+
+<ArticleImage
+  src="https://github.com/xataio/mdx-changelog/raw/main/images/schematitle.png"
+  width="568"
+  height="378"
+  alt="Schema titles"
+  caption="Schema titles are now linked"
+  position="center"
+/>
+
+<ArticleImage
+  src="https://raw.githubusercontent.com/xataio/mdx-changelog/main/images/branchscroll.png"
+  width="421"
+  height="469"
+  alt="Branch scrolling"
+  caption="Branch scrolling"
+  position="center"
+/>
+
+#### Blog posts
+
+- [Semantic or keyword search for finding ChatGPT context. Who searched it better?](https://xata.io/blog/keyword-vs-semantic-search-chatgpt)

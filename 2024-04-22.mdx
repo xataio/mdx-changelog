@@ -17,3 +17,15 @@ date: 4-22-2024
 - Fix: Close Postgres wire connection when a database branch is deleted.
 - Fix: Improve retry logic for outdated query plans errors.
 - Improved error handling: if we get a 400 from Elasticsearch, we will now return a 400 to the client.
+
+### What's new in pgroll
+
+- [#342](https://github.com/xataio/pgroll/pull/342) Restrict the search path of the connection used by the state package to only the state schema (the schema that contains the migrations table). This ensures that any column types that might reside in other schema are always qualified with the schema name in the internal schema representation.
+- [#338](https://github.com/xataio/pgroll/pull/338) Support multiple `ALTER COLUMN` sub operations in a single migration.
+- [#335](https://github.com/xataio/pgroll/pull/335) Add complete phase hooks.
+
+### What's new in pgzx
+
+- [#40](https://github.com/xataio/pgzx/pull/40) Improved SPI support and added an SPI example extension.
+- [#39](https://github.com/xataio/pgzx/pull/39) libpq improvements: Use correct types in C helpers instead of `void*`. This also improve the Zig code as we do not have to cast between types and opaque pointer types.
+- [#38](https://github.com/xataio/pgzx/pull/38) Collection hashtable: add valuesIterator

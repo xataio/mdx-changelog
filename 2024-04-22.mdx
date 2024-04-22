@@ -1,0 +1,35 @@
+---
+date: 4-22-2024
+---
+
+### What's new
+
+- We have continued to improve the SQL compatibility with Postgres for our shared clusters:
+  - Allow sub-queries in INSERT/UPDATE statement
+  - Allow `server_version_num` setting
+  - Allow `SET CONSTRAINTS` command
+- Improved the message ORM users see after adapting a table schema. Because "adapt" adds a few columns, it is important to pull/introspect the schema after making changes to the table.
+
+  ![Adapt message for ORMs](images/adapt-message.png)
+
+- File Attachments: Return all file object properties in upload response. This can simplify your code when using upload URLs.
+- If you don't specify a branch name in the Postgres wire connection string, we will default to the `main` branch.
+- Fix: Close Postgres wire connection when a database branch is deleted.
+- Fix: Improve retry logic for outdated query plans errors.
+- Improved error handling: if we get a 400 from Elasticsearch, we will now return a 400 to the client.
+
+### What's new in pgroll
+
+- [#342](https://github.com/xataio/pgroll/pull/342) Restrict the search path of the connection used by the state package to only the state schema (the schema that contains the migrations table). This ensures that any column types that might reside in other schema are always qualified with the schema name in the internal schema representation.
+- [#338](https://github.com/xataio/pgroll/pull/338) Support multiple `ALTER COLUMN` sub operations in a single migration.
+- [#335](https://github.com/xataio/pgroll/pull/335) Add complete phase hooks.
+
+### What's new in pgzx
+
+- [#40](https://github.com/xataio/pgzx/pull/40) Improved SPI support and added an SPI example extension.
+- [#39](https://github.com/xataio/pgzx/pull/39) libpq improvements: Use correct types in C helpers instead of `void*`. This also improve the Zig code as we do not have to cast between types and opaque pointer types.
+- [#38](https://github.com/xataio/pgzx/pull/38) Collection hashtable: add valuesIterator
+
+### Blog posts
+
+- [Build authenticated and paywall pages with Stripe and Xata](https://xata.io/blog/authenticated-paywall-stripe-xata) by Rishi Raj Jain - This tutorial shows you how to build protected and paywall pages using using Astro, Stripe, Lucia Auth, Xata and Vercel.

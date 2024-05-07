@@ -1,0 +1,38 @@
+---
+date: 5-7-2024
+---
+
+### What's new
+
+- We continued to improve the Postgres wire compatibility with more clients and ORMs:
+    - Improved the extended wire protocol by supporting flows not starting with a `Sync` message. 
+    - Added support for the `DEALLOCATE` statement.
+    - Added support for `current_user`, `current_role`, `session_user`, and `user` functions.
+    - Added support for `GREATEST` and `LEAST` functions.
+    - Correctly handle `CommandComplete` and `EmptyQueryResponse` messages in the Postgres wire protocol. This fixes a bug where the client would hang in particular situations.
+    - Added support for `information_schema._pg_expandarray` over the Postgres wire protocol.
+    - Clarified error message on failed internal authentication.
+- We also continued to improve Dedicated Clusters, currently in private alpha: 
+    - It's now possible to enable extensions (`CREATE EXTENSION`).
+    - Termination is now self-service.
+    - Email notifications for cluster events.
+- The admin UI also got a nice set of improvements:
+    - Add support default, unique, and not null constraints on all column types in the UI schema editor.
+    - Nicer "branch not found" error page.
+    - Copy button in the Edit record dialog for the disabled fields. 
+    - Fixed last calendar month view in the Usage page. 
+    - Fixed email column type validation to match the backend.
+    - Fixed bug when editing columns of type "multiple".
+    - Fixed error when filtering by a File column being NULL.
+    - Fixed scrolling issues on workspace pages.
+- The `xata schema edit` CLI command now works with Postgres wire protocol enabled branches.
+
+### What's new in pgroll
+
+- [#341](https://github.com/xataio/pgroll/pull/341) Allow rename-only `alter column` operations on unbackfillable columns. Rename operations don't require backfills so there is no reason to impose such a restriction.
+- [#344](https://github.com/xataio/pgroll/pull/344) Add a `set comment` sub-operation to `alter column`. The intention is that this can be combined with a `change type` sub-operation if there is some column metadata that should be updated as part of the type change.
+- [#345](https://github.com/xataio/pgroll/pull/345) Support setting table and column comments to NULL. Without this change it was impossible to remove a comment from a column using the `set comment` sub-operation
+- [#346](https://github.com/xataio/pgroll/pull/346) Add a `set default` sub-operation to `alter column`.
+
+
+

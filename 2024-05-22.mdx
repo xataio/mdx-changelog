@@ -4,9 +4,12 @@ date: 5-22-2024
 
 ### What’s new with Xata
 
-<ArticleVideo platform="html" src="/images/2024-05-22-changelog.mp4" width="1298" height="720" />
-
-[Xata May 22, 2024 changelog](/images/changelog-2024-05-22.mp4)
+<ArticleVideo
+  platform="html"
+  src="https://raw.githubusercontent.com/xataio/mdx-changelog/main/images/changelog-2024-05-22.mp4"
+  width="1298"
+  height="720"
+/>
 
 **New left hand navigation**
 
@@ -28,50 +31,50 @@ Our empty state for a new database got a makeover. Looking pretty good, eh?
 
 ### What’s new in pgroll
 
-- [v0.6.0 was released 🎉](https://github.com/xataio/pgroll/releases/tag/v0.6.0)
-  - 🪝 Add support for 'hooks' so that users using `pgroll` as a Go module can customize its behaviour ([#290](https://github.com/xataio/pgroll/pull/290), [#335](https://github.com/xataio/pgroll/pull/335))
-  - 🚥 Backoff and retry DDL and DML operations on `lock_timeout` errors ([#353](https://github.com/xataio/pgroll/pull/353))
-  - 🔗 Run all DDL operations before running any DML (data backfills) during migration start ([#289](https://github.com/xataio/pgroll/pull/289))
-  - ✖️ Support changing multiple column properties in one `alter_column` operation ([#338](https://github.com/xataio/pgroll/pull/338))
-  - 🖊️ Support rewriting or rejecting user-defined SQL using transformers when using `pgroll` as a Go module ([#329](https://github.com/xataio/pgroll/pull/329), #[332](https://github.com/xataio/pgroll/pull/332)).
-  - 🫱 Allow changing column default values ([#346](https://github.com/xataio/pgroll/pull/346))
-  - 📛 Support for renaming constraints. ([#293](https://github.com/xataio/pgroll/pull/293))
-  - ✅ Allow raw SQL migrations to be run on migration completion instead of start ([#280](https://github.com/xataio/pgroll/pull/280)).
-  - 🔑 Allow setting the `ON DELETE` behavior of foreign key constraints ([#297](https://github.com/xataio/pgroll/pull/297))
-- [Export `OpAlterColumn.IsRenameOnly` method #357](https://github.com/xataio/pgroll/pull/357)
+* [v0.6.0 was released 🎉](https://github.com/xataio/pgroll/releases/tag/v0.6.0)
+  * 🪝 Add support for 'hooks' so that users using `pgroll` as a Go module can customize its behaviour ([#290](https://github.com/xataio/pgroll/pull/290), [#335](https://github.com/xataio/pgroll/pull/335))
+  * 🚥 Backoff and retry DDL and DML operations on `lock_timeout` errors ([#353](https://github.com/xataio/pgroll/pull/353))
+  * 🔗 Run all DDL operations before running any DML (data backfills) during migration start ([#289](https://github.com/xataio/pgroll/pull/289))
+  * ✖️ Support changing multiple column properties in one `alter_column` operation ([#338](https://github.com/xataio/pgroll/pull/338))
+  * 🖊️ Support rewriting or rejecting user-defined SQL using transformers when using `pgroll` as a Go module ([#329](https://github.com/xataio/pgroll/pull/329), #[332](https://github.com/xataio/pgroll/pull/332)).
+  * 🫱 Allow changing column default values ([#346](https://github.com/xataio/pgroll/pull/346))
+  * 📛 Support for renaming constraints. ([#293](https://github.com/xataio/pgroll/pull/293))
+  * ✅ Allow raw SQL migrations to be run on migration completion instead of start ([#280](https://github.com/xataio/pgroll/pull/280)).
+  * 🔑 Allow setting the `ON DELETE` behavior of foreign key constraints ([#297](https://github.com/xataio/pgroll/pull/297))
+* [Export `OpAlterColumn.IsRenameOnly` method #357](https://github.com/xataio/pgroll/pull/357)
   Applications using `pgroll` as a module may need to test if an alter column operation is only a column rename operation without having to duplicate the logic of checking the fields of the `OpAlterColumn` struct.
-- [Support create/drop index with uppercase names #356](https://github.com/xataio/pgroll/pull/356)
+* [Support create/drop index with uppercase names #356](https://github.com/xataio/pgroll/pull/356)
   Fixes [#355](https://github.com/xataio/pgroll/issues/355). Postgres stores index names with uppercase characters in the `pg_index` catalog using the quoted version of the name. This makes it necessary to strip quotes from index names when retrieving them from the `pg_index` catalog when building the internal schema representation.
-- [Make `down` SQL in rename column operations use the new name of the column #354](https://github.com/xataio/pgroll/pull/354)
+* [Make `down` SQL in rename column operations use the new name of the column #354](https://github.com/xataio/pgroll/pull/354)
   Ensure that 'alter column' operations that rename a column and also specify down SQL (such as those that alter some other column attribute at the time of the rename) must use the new name of the column in the down SQL.
-- [Dont duplicate `CHECK` constraints and `DEFAULT`s when altering column type #349](https://github.com/xataio/pgroll/pull/349)
+* [Dont duplicate `CHECK` constraints and `DEFAULT`s when altering column type #349](https://github.com/xataio/pgroll/pull/349)
   Fixes [#348](https://github.com/xataio/pgroll/issues/348). This PR changes column duplication to ignore errors on `DEFAULT` and `CHECK` constraint duplication that look as though they are caused by a change of column type.
-- [Retry on `lock_timeout` errors #353](https://github.com/xataio/pgroll/pull/353)
+* [Retry on `lock_timeout` errors #353](https://github.com/xataio/pgroll/pull/353)
   Fixes [#171](https://github.com/xataio/pgroll/issues/171). This PR retries individual statements (like the DDL operations run by migration operations) and transactions (used by backfills) if they fail due to a `lock_timeout` error. The retry uses an exponential backoff with jitter.
 
 ### What’s new in pgzx
 
-- [fdw: init submodule with helpers to implement foreign data wrappers #52](https://github.com/xataio/pgzx/pull/52)
+* [fdw: init submodule with helpers to implement foreign data wrappers #52](https://github.com/xataio/pgzx/pull/52)
   Implement `fdw.Options` related types and helper to validate options. When implementing a foreign data wrapper one should implement a handler that returns a list of callbacks and a validator function that validates the settings FDW SQL statements will accept. So far the module only implements helpers for the validator.
-- [fmgr: Make error return optional in exported SQL functions #51](https://github.com/xataio/pgzx/pull/51)
+* [fmgr: Make error return optional in exported SQL functions #51](https://github.com/xataio/pgzx/pull/51)
   Allow Zig based SQL functions to not return a Zig error. Now you can write:
   ```c
   fn myfunc() void { ... }
   ```
-- [elog: Add hints and details #50](https://github.com/xataio/pgzx/pull/50)
+* [elog: Add hints and details #50](https://github.com/xataio/pgzx/pull/50)
   Add support to report additional hints and details when erroring.
-- [List: add iteratorFrom #49](https://github.com/xataio/pgzx/pull/49)
+* [List: add iteratorFrom #49](https://github.com/xataio/pgzx/pull/49)
   Add `iteratorFrom` and `reverseIteratorFrom` to create an iterator directly from a list type declaration.
-- [C: add more headers #48](https://github.com/xataio/pgzx/pull/48)
+* [C: add more headers #48](https://github.com/xataio/pgzx/pull/48)
   Added headers for `access/reloptions.h` ,catalog access, foreign data wrappers
 
 ### Blog posts
 
-- [Club Xata reunion: teamwork across borders](https://xata.io/blog/offsite-evora-2024)
+* [Club Xata reunion: teamwork across borders](https://xata.io/blog/offsite-evora-2024)
   Amidst breathtaking views of the Portuguese hilly landscape and early summer sun, we recap our Spring 2024 offsite in Evora for connecting and collaborating with our colleagues.
-- [Simplifying license management and reducing costs with AWS and Xata](https://xata.io/blog/community-spotlight-simplifying-license-management)
+* [Simplifying license management and reducing costs with AWS and Xata](https://xata.io/blog/community-spotlight-simplifying-license-management)
   Putting the spotlight on Ilia Gandelman, who significantly improved a cumbersome software license management system for smart rehabilitation therapy devices using Xata and AWS.
-- [Geographically distributed Postgres for multi-tenant applications](https://xata.io/blog/geo-distributed-postgres)
+* [Geographically distributed Postgres for multi-tenant applications](https://xata.io/blog/geo-distributed-postgres)
   Documenting a pattern for making multi-tenant applications global by distributing the data, using only standard PostgreSQL functionality.
-- [Developing a personalized mood enhancement service](https://xata.io/blog/community-spotlight-personalization-service)
+* [Developing a personalized mood enhancement service](https://xata.io/blog/community-spotlight-personalization-service)
   Putting the spotlight on Dr. Ndubuisi Ekwueme (aka Dr. Dubz), who recently launched Moodly, a service that aims to brighten its users moods.

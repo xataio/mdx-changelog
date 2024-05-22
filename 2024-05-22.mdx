@@ -4,12 +4,7 @@ date: 5-22-2024
 
 ### What’s new with Xata
 
-<ArticleVideo
-  platform="html"
-  src="/images/2024-05-22-changelog.mp4"
-  width="1298"
-  height="720"
-/>
+<ArticleVideo platform="html" src="/images/2024-05-22-changelog.mp4" width="1298" height="720" />
 
 [Xata May 22, 2024 changelog](/images/changelog-2024-05-22.mp4)
 
@@ -35,15 +30,15 @@ Our empty state for a new database got a makeover. Looking pretty good, eh?
 
 [v0.6.0 was released 🎉](https://github.com/xataio/pgroll/releases/tag/v0.6.0)
 
-* 🪝 Add support for 'hooks' so that users using `pgroll` as a Go module can customize its behaviour ([#290](https://github.com/xataio/pgroll/pull/290), [#335](https://github.com/xataio/pgroll/pull/335))
-* 🚥 Backoff and retry DDL and DML operations on `lock_timeout` errors ([#353](https://github.com/xataio/pgroll/pull/353))
-* 🔗 Run all DDL operations before running any DML (data backfills) during migration start ([#289](https://github.com/xataio/pgroll/pull/289))
-* ✖️ Support changing multiple column properties in one `alter_column` operation ([#338](https://github.com/xataio/pgroll/pull/338))
-* 🖊️ Support rewriting or rejecting user-defined SQL using transformers when using `pgroll` as a Go module ([#329](https://github.com/xataio/pgroll/pull/329), #[332](https://github.com/xataio/pgroll/pull/332)).
-* 🫱 Allow changing column default values ([#346](https://github.com/xataio/pgroll/pull/346))
-* 📛 Support for renaming constraints. ([#293](https://github.com/xataio/pgroll/pull/293))
-* ✅ Allow raw SQL migrations to be run on migration completion instead of start ([#280](https://github.com/xataio/pgroll/pull/280)).
-* 🔑 Allow setting the `ON DELETE` behavior of foreign key constraints ([#297](https://github.com/xataio/pgroll/pull/297))
+- 🪝 Add support for 'hooks' so that users using `pgroll` as a Go module can customize its behaviour ([#290](https://github.com/xataio/pgroll/pull/290), [#335](https://github.com/xataio/pgroll/pull/335))
+- 🚥 Backoff and retry DDL and DML operations on `lock_timeout` errors ([#353](https://github.com/xataio/pgroll/pull/353))
+- 🔗 Run all DDL operations before running any DML (data backfills) during migration start ([#289](https://github.com/xataio/pgroll/pull/289))
+- ✖️ Support changing multiple column properties in one `alter_column` operation ([#338](https://github.com/xataio/pgroll/pull/338))
+- 🖊️ Support rewriting or rejecting user-defined SQL using transformers when using `pgroll` as a Go module ([#329](https://github.com/xataio/pgroll/pull/329), #[332](https://github.com/xataio/pgroll/pull/332)).
+- 🫱 Allow changing column default values ([#346](https://github.com/xataio/pgroll/pull/346))
+- 📛 Support for renaming constraints. ([#293](https://github.com/xataio/pgroll/pull/293))
+- ✅ Allow raw SQL migrations to be run on migration completion instead of start ([#280](https://github.com/xataio/pgroll/pull/280)).
+- 🔑 Allow setting the `ON DELETE` behavior of foreign key constraints ([#297](https://github.com/xataio/pgroll/pull/297))
 
 [Export `OpAlterColumn.IsRenameOnly` method #357](https://github.com/xataio/pgroll/pull/357)
 

@@ -1,0 +1,58 @@
+---
+date: 6-3-2024
+---
+
+### What's new with Xata
+
+**UI improvements**
+
+The UI Playground now supports running multiple SQL statements at once. This was a highly requested feature that will make it easier to run scripts in the Playground.
+
+<ArticleVideo
+  platform="html"
+  src="https://us-east-1.storage.xata.sh/5fedudtt7t5k53p6dbpoa2jleo"
+  width="2824"
+  height="1482"
+/>
+
+Other UI improvements:
+
+- The branch selector got an upgrade and now works better with looooong branch names.
+- Fixed using `now()` as a default value for date columns.
+
+**Postgres compatibility improvements**
+
+Also the past couple of weeks we've seen a ton of improvements to our compatibility with the Postgres wire protocol:
+
+- Improved compatibility with more tools that use the Postgres wire protocol, including JetBrains DataGrip.
+- Added support for several system info functions.
+- Allow locking clauses in SELECT statements. For example, the following is now supported: `SELECT * FROM table1 WHERE name = 'John' FOR UPDATE`.
+- Improved compatibility and fixed issues when running [Ghostfolio](https://github.com/ghostfolio/ghostfolio) with Xata.
+- Reduced clutter and errors during pg_restore runs.
+- Added support for `SHOW session_replication_role`.
+
+**Extensions!**
+
+We added support for the first extensions on shared clusters. To use them, make sure you enable [direct access to Postgres](https://xata.io/docs/postgres).
+
+- Added support for [pgvector](https://github.com/pgvector/pgvector). You can now use either pgvector or the Xata vector implementation based on Lucene.
+- Added support for the [uuid-ossp](https://www.postgresql.org/docs/current/uuid-ossp.html) extension. You can use its functions to generate different UUID flavours.
+
+**Dedicated clusters**
+
+We've worked on improving the stability and usability of dedicated clusters, currently in private alpha, but quickly moving towards public beta:
+
+- Better validation for cluster names to prevent a common source of errors.
+- Added support for terminating clusters.
+- Added support limited support for DO blocks. More improvements coming soon.
+
+**Data API**
+
+Also our API, more specifically the SQL over HTTP part, got an important update:
+
+- Support batching multiple SQL commands in a single request over the HTTP API.
+
+### Blog posts
+
+- [Accelerating app development with Xata as the data layer](https://xata.io/blog/community-spotlight-accelerating-app-development)\
+  Putting the spotlight on Mathias Eriksson (aka Matzie), founder of Matzielab, a company that has nearly perfected the app development process.

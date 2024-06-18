@@ -1,0 +1,28 @@
+---
+date: 6-18-2024
+---
+
+### What's new with Xata
+
+**Dedicated clusters improvements**
+
+- Added support for terminating clusters via the UI.
+
+![Terminate cluster](/images/terminate-cluster-ui.png)
+
+**Postgres compatibility improvements**
+
+- Added support for `NOTIFY`, `LISTEN`, and `UNLISTEN` commands.
+- Added partial support for pl/pgsql `DO` blocks.
+- Added support for most of the [binary string functions](https://www.postgresql.org/docs/current/functions-binarystring.html).
+- Allow users to set the identity columns for a table after the table was created.
+- Better support for comments on columns.
+- Added support for connection-time parameters. This is deprecated but still in-use, for example, in `psycopg2`.
+- Added support for renaming constraints.
+
+**Blog Posts**
+
+- [Guide to developing a travel application: Xata, Next.js, Tailwind CSS, & Vercel](https://xata.io/blog/travel-application-development-guide)\
+  Learn how to create a travel dashboard application using Xata, Next.js, Tailwind CSS, and Vercel to help you track your adventures and organize your travel experiences. Blog post by community member Teri Eyenike.
+- [Simplifying critical heart transplant waitlist data with Xata](https://xata.io/blog/community-spotlight-heart-transplant-tracker)\
+  A community spotlight featuring Daniel Reale a QA engineer who used Xata to create an application for personally tracking his son's position on the Philadelphia heart transplant waitlist.

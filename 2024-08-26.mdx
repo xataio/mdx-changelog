@@ -1,0 +1,40 @@
+---
+date: 08-26-2024
+---
+
+### What's new with Xata
+
+- Improved Playground "Run statement" parsing and delimitation of queries. This allows you to run individual SQL queries even in the presence of comments and multi-line.
+
+![Playground Run statement](/images/playground-run-statement.png)
+
+- Related to the above, basic "psql like" special comands like `\dt` are now possible in the SQL Playground.
+- UI: Postgres native types are now showed by default in the UI. For example, we now show `text[]` instead of the Xata specific `multiple` type.
+- UI: The Queries table now supports infinite scrolling instead of simple pagination.
+- Added an [API endpoint](https://xata.io/docs/api-reference/db/db_branch_name/async#create-database-branch) for creating branches asynchronously. This is needed because for branches with long migration history, the sync operation can time out.
+- Free workspaces can no longer invite collaborators, enforcing the limit of one user per free workspace. If a workspace is free and already has more collaborators, they are grandfathered in.
+- On Shared clusters, if an extension is already enabled, we ignore the CREATE EXTENSION command.
+- SHOW statements as well as pg_catalog access are now allowed over the HTTP SQL endpoint.
+- UPDATE statements are now correctly supported when inside CTEs.
+- Improved support for `ALTER SEQUENCE ... OWNED BY` statements.
+- Better support for `ALTER SCHEMA` statements.
+- UI: added breadcrumbs to the Dedicated Clusters navigation.
+- UI: Fix search in the context of non-adapted tables.
+- UI: Fix metrics rendering when a metric is completely empty.
+
+### What's new with pgstream
+
+- Internal packages are now exported so pgstream can be used easier as a library [#58](https://github.com/xataio/pgstream/pull/58).
+- The webhook subscriptions table is now created under the `pgstream` schema [#62](https://github.com/xataio/pgstream/pull/62).
+- The sample webhooks listener now prints the complete event body [#64](https://github.com/xataio/pgstream/pull/64).
+
+### What's new in pgroll
+
+- Add a `roll.WithSearchPath` option to allow widening of the search path during migration execution [#380](https://github.com/xataio/pgroll/pull/380).
+
+### What's new in pgzx
+
+- list: add items() method [#82](https://github.com/xataio/pgzx/pull/82).
+- pgzx.node: add List type to iterate over List of Node(s) [#89](https://github.com/xataio/pgzx/pull/89).
+- err/elog: add ElogIndicator error set [#90](https://github.com/xataio/pgzx/pull/90).
+- Build system improvements [#86](https://github.com/xataio/pgzx/pull/86).

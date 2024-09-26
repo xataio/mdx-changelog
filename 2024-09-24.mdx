@@ -1,0 +1,24 @@
+---
+date: 9-24-2024
+---
+
+### What's new with Xata
+
+- Postgres enabled databases are now the default in the UI.
+- Multiple improvements to table from the Queries pages.
+- The Tables menu item is now a link to the Schema editor.
+- Significant speed improvement for many pg catalog operations on the shared clusters (e.g. listing tables).
+- Added support for running EXPLAIN statements in shared clusters.
+- VACUUM commands are now allowed on dedicated clusters.
+- Added support for creating custom operators.
+- Allow more LIMIT expressions.
+- Allow MERGE statements.
+- Fixed Xata CLI import of CSV files in an existing table.
+- Protocol level fix improving compatibility with different tools (PortalSuspended).
+- Fixes for the UI sometimes not refreshing after schema changes and other conditions.
+
+### What's new in pgstream
+
+- Improved support for Elasticsearch replication, by separating the OpenSearch and Elasticsearch clients. [#66](https://github.com/xataio/pgstream/pull/66).
+- Improved instrumentation, by adding support for traces and extending the instrumentation coverage. [#69](https://github.com/xataio/pgstream/pull/69).
+- Use the same kafka reader for fetching and committing messages. [#65](https://github.com/xataio/pgstream/pull/65).
